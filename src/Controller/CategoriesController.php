@@ -6,8 +6,10 @@ use App\Entity\Categories;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CategoriesController extends AbstractController
@@ -18,6 +20,7 @@ class CategoriesController extends AbstractController
     /**
      * CategoriesController constructor.
      * @param CategoriesRepository $repository
+     * @param ProductsRepository $repositoryProducts
      */
     public function __construct(CategoriesRepository $repository, ProductsRepository $repositoryProducts)
     {
@@ -25,9 +28,14 @@ class CategoriesController extends AbstractController
         $this->repositoryProducts = $repositoryProducts;
     }
 
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $categories = $this->repository->findAll();
+        die(var_dump($this->repository));
+        $categories = $paginator->paginate(
+            $this->repository->findPoney(),
+            $request->query->getInt('page', 1),
+            9
+        );
 
         return $this->render('categories/index.html.twig',
             ['categories' => $categories]

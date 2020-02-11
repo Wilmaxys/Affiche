@@ -7,7 +7,7 @@
         {% if category.imageName and category.imageFile  %}
             <img src="{{ vich_uploader_asset(category, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
         {% else %}
-            <img src="{{ asset('build/images/test.jpg') | imagine_filter('thumb')  }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+            <img src="{{ asset('images/empty.jpg') | imagine_filter('thumb')  }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
         {% endif %}
 
         <div class="box-body">

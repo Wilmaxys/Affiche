@@ -19,9 +19,8 @@ class CategoryFixture extends Fixture
             $Category = new Categories();
             $Category->setNom($faker->words(3, true));
             $Category->setDescription($faker->words(3, true));
-            /*$Category->setImageName($faker->imageUrl($width = 640, $height = 480));*/
-            $Category->setImageFile($faker->image($dir = 'public/images', $width = 640, $height = 480));
-            /*$Category->setImageSize(4);*/
+            $Category->setImageName($faker->imageUrl($width = 640, $height = 480));
+            $Category->setImageSize(4);
             $manager->persist($Category);
         }
 
