@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <script defer src="{{ asset('build/app.js') }}"></script>
+    <script src="{{ asset('build/preRender.js') }}"></script>
+    {% block stylesheets %}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}
+</head>
+<body class="light">
+<div class="header">
+    <div class="header-left">
+        <div class="header-title">
+            NozAffiche
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="header-portal">
+            {% block portal %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+<div class="footer">
+    <p>Cette application à été développé par le Pôle WEB - Univers NOZ © 2020. Pour nous contacter: <a  href="index.html">Envoyer un email</a>.</p>
+</div>
+<div class="modal-container dp-none">
+    <div class="modal">
+        <div class="box">
+            <div class="box-body">
+                <div class="box-title">
+                    <div class="box-title-text">
+                        Test rapide
+                    </div>
+                    <div id="closeModal" class="box-title-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="box-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste non blanditiis accusantium qui temporibus molestias nam est pariatur, magni maxime voluptatum voluptate ducimus, optio vel natus! Blanditiis, magnam quibusdam!
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="box-title">
+                    testRapide
+                </div>
+                <div class="box-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste non blanditiis accusantium qui temporibus molestias nam est pariatur, magni maxime voluptatum voluptate ducimus, optio vel natus! Blanditiis, magnam quibusdam!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

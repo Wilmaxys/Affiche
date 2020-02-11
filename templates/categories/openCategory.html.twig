@@ -1,0 +1,14 @@
+{% extends 'base/base.html.twig' %}
+
+{% block portal %}
+    <a  href="{{path('categories.show')}}">Retour</a>
+{% endblock %}
+
+{% block body %}
+    <div class="container-row">
+        {% for product in products %}
+            {% include 'products/_productOverwiew.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+

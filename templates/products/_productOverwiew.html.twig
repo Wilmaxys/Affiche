@@ -1,0 +1,15 @@
+<a href="{{ path('product.show', {'id':product.id}) }}" class="box-container container-3">
+    <div class="box">
+        {#<div class="box-header icon-img">
+            <img src="assets/img/set.icon.png" alt="">
+        </div>#}
+        <div class="box-body">
+            <div class="box-title-medium">
+                {{ product.nom }}
+            </div>
+            <div class="box-content">
+                {{ product.description | nl2br }}
+            </div>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,42 @@
+{% extends 'base/base.html.twig' %}
+
+{% block portal %}
+    <a  href="{{ path('category.show', { 'id': product.category.id }) }}">Retour</a>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-row">
+        <div class="box-body container-6">
+            <img src="{{ asset('build/images/test.jpg') }}" alt="" style="width:100%">
+        </div>
+        <div class="box-body container-6">
+            <h1>{{ product.nom }}</h1>
+            <h2>{{ product.description }}</h2>
+            <table class="table-template">
+                <tr>
+                    <td>Surface habitable</td>
+                    <td>sdfsdf m2</td>
+                </tr>
+                <tr>
+                    <td>Pièces</td>
+                    <td>sdfsdfdsfdsfsdf</td>
+                </tr>
+                <tr>
+                    <td>Chambres</td>
+                    <td>sdfdsfdsfdssdfsdf</td>
+                </tr>
+                <tr>
+                    <td>Etage</td>
+                    <td>sdfsdfsdfsdfsdf</td>
+                </tr>
+                <tr>
+                    <td>Chauffage</td>
+                    <td>sfsdfsdfsd</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

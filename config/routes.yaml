@@ -1,0 +1,53 @@
+categories.show:
+  path: /
+  controller: App\Controller\CategoriesController::index
+category.show:
+  path: /category/{id}
+  controller: App\Controller\CategoriesController::openCategory
+product.show:
+  path: /product/{id}
+  controller: App\Controller\ProductsController::show
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+logout:
+  path: /logout
+
+
+admin.properties.show:
+  path: /admin
+  controller: App\Controller\Admin\PropertyController::index
+admin.property.new:
+  path: /admin/properties/new
+  controller: App\Controller\Admin\PropertyController::new
+admin.property.edit:
+  path: /admin/properties/{id}
+  controller: App\Controller\Admin\PropertyController::edit
+  requirements:
+    slug: "[a-z0-9\\-]*"
+  methods:    GET|POST
+admin.property.delete:
+  path: /admin/properties/{id}
+  controller: App\Controller\Admin\PropertyController::delete
+  methods:    DELETE
+
+admin.tags.show:
+  path: /admin/tag
+  methods:    GET
+  controller: App\Controller\Admin\TagController::index
+admin.tag.new:
+  path: /admin/tag/new
+  methods:    GET|POST
+  controller: App\Controller\Admin\TagController::new
+admin.tag.show:
+  path: /admin/tag/{id}
+  methods:    GET
+  controller: App\Controller\Admin\TagController::show
+admin.tag.edit:
+  path: /admin/tag/{id}/edit
+  methods:    GET|POST
+  controller: App\Controller\Admin\TagController::edit
+admin.tag.delete:
+  path: /admin/tag/{id}
+  methods:    DELETE
+  controller: App\Controller\Admin\TagController::delete

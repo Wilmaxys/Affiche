@@ -1,0 +1,46 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        from_database:
+            entity:
+                class: App\Entity\User
+                property: username
+        #my_ldap:
+        #    ldap:
+        #        service: Symfony\Component\Ldap\Ldap
+        #        base_dn: ou=Users,dc=example,dc=com
+        #        search_dn: uid=admin,ou=system
+        #        search_password: sec
+        #        default_roles: ROLE_ADMIN
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            #http_basic_ldap:
+                # ...
+            #    service: Symfony\Component\Ldap\Ldap
+            #    dn_string: 'ou=Users,dc=example,dc=com'
+            #    query_string: '(uid={username})'
+
+            form_login:
+                check_path: login
+            logout:
+                path: /logout
+            # http_basic: true
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 12
