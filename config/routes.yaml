@@ -7,47 +7,49 @@ category.show:
 product.show:
   path: /product/{id}
   controller: App\Controller\ProductsController::show
+
 login:
   path: /login
   controller: App\Controller\SecurityController::login
+
 logout:
   path: /logout
 
 
-admin.properties.show:
+admin.categories.show:
   path: /admin
-  controller: App\Controller\Admin\PropertyController::index
-admin.property.new:
-  path: /admin/properties/new
-  controller: App\Controller\Admin\PropertyController::new
-admin.property.edit:
-  path: /admin/properties/{id}
-  controller: App\Controller\Admin\PropertyController::edit
+  controller: App\Controller\Admin\CategoriesController::index
+admin.category.new:
+  path: /admin/category/new
+  controller: App\Controller\Admin\CategoriesController::new
+admin.categories.showOneCategory:
+  path: /admin/categories/{id}
+  controller: App\Controller\Admin\CategoriesController::showOneCategory
+admin.category.edit:
+  path: /admin/category/{id}
+  controller: App\Controller\Admin\CategoriesController::edit
   requirements:
     slug: "[a-z0-9\\-]*"
   methods:    GET|POST
-admin.property.delete:
-  path: /admin/properties/{id}
-  controller: App\Controller\Admin\PropertyController::delete
+admin.category.delete:
+  path: /admin/category/{id}
+  controller: App\Controller\Admin\CategoriesController::delete
   methods:    DELETE
 
-admin.tags.show:
-  path: /admin/tag
-  methods:    GET
-  controller: App\Controller\Admin\TagController::index
-admin.tag.new:
-  path: /admin/tag/new
+admin.products.show:
+  path: /admin/products
+  controller: App\Controller\Admin\ProductsController::index
+admin.product.new:
+  path: /admin/product/new
+  controller: App\Controller\Admin\ProductsController::new
+admin.product.edit:
+  path: /admin/product/{id}
+  controller: App\Controller\Admin\ProductsController::edit
+  requirements:
+    slug: "[a-z0-9\\-]*"
   methods:    GET|POST
-  controller: App\Controller\Admin\TagController::new
-admin.tag.show:
-  path: /admin/tag/{id}
-  methods:    GET
-  controller: App\Controller\Admin\TagController::show
-admin.tag.edit:
-  path: /admin/tag/{id}/edit
-  methods:    GET|POST
-  controller: App\Controller\Admin\TagController::edit
-admin.tag.delete:
-  path: /admin/tag/{id}
+admin.product.delete:
+  path: /admin/product/{id}
+  controller: App\Controller\Admin\ProductsController::delete
   methods:    DELETE
-  controller: App\Controller\Admin\TagController::delete
+

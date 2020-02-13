@@ -5,17 +5,14 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-// any CSS you import will output into a single css file (app.css in this case)
-let $ = require('jquery');
-require('../js/fontAwesome.min');
+let $ = require( 'jquery' );
+require('select2');
+require('datatables.net');
+require('../js/fontAwesome.min.js');
 
-import '../css/app.css';
-
-/*
-require('select2')
-
-$('select').select2()
-*/
+require('select2/dist/css/select2.css');
+require('../css/app.css');
+require('../css/nozAffiche.css');
 
 $( document ).ready(function () {
 
@@ -23,9 +20,24 @@ $( document ).ready(function () {
         $(this).parents('.modal-container').toggleClass("dp-none");
     });
 
-    $('#OpenModal').click(function () {
-        $('.modal-container').toggleClass("dp-none");
+    $('#commande').click(function () {
+        $('#commandeModal').toggleClass("dp-none");
     });
+
+    $('.input-select2').select2();
+
+    console.log("test");
+    $('table').DataTable( {
+        "lengthChange": false,
+        "language": {
+            "lengthMenu": "Afficher _MENU_ enregistrements par page",
+            "search": "Rechercher :",
+            "zeroRecords": "Aucun enregistrement trouvé.",
+            "info": "Page _PAGE_ sur _PAGES_",
+            "infoEmpty": "Aucun enregistrement disponible.",
+            "infoFiltered": "(Filtré à partir de _MAX_ enregistrements)"
+        }
+    } );
 
     $('.header-profil-owerview-theme').click(function (){
         $('body').toggleClass('light dark');
@@ -146,10 +158,18 @@ $( document ).ready(function () {
     $('.sidebar').hover(function () {
         if (localStorage.getItem('pinDesactivated') == "true") {
             $(this).toggleClass('sidebar-invisible');
+            var currentObject = $('#' + localStorage.getItem('currentActive'));
+            if (currentObject && !currentObject.hasClass('active')) {
+                currentObject.addClass('active');
+            }
         }
     }, function () {
         if (localStorage.getItem('pinDesactivated') == "true") {
             $(this).toggleClass('sidebar-invisible');
+            var currentObject = $('#' + localStorage.getItem('currentActive'));
+            if (currentObject) {
+                currentObject.removeClass('active');
+            }
         }
     });
 
@@ -158,10 +178,5 @@ $( document ).ready(function () {
     $('.sidebar').toggleClass('dp-none');
     $('.tabs-container').toggleClass('dp-none');
 })
-
-
-
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

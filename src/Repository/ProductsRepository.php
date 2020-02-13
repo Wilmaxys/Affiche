@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Categories;
 use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Products|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,18 @@ class ProductsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Products::class);
+    }
+
+    /**
+     * @param Categories $category
+     * @return Query
+     */
+    public function findAllOrdered(Categories $category) : Query
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.category = :cat')
+            ->setParameter('cat', $category)
+            ->orderBy('p.nom','ASC')->getQuery();
     }
 
     // /**

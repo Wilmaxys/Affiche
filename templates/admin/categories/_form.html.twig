@@ -1,0 +1,8 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_row(form.nom) }}
+{{ form_row(form.description) }}
+<div class="text-align-right">
+    {{ form_row(form.save) }}
+    {{ form_row(form.cancel) }}
+</div>
+{{ form_end(form) }}

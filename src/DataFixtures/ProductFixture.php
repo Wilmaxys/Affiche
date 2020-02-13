@@ -17,7 +17,7 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
 
         $CategoryRetrive = $manager->getRepository(Categories::class)->findAll();
 
-        for ($i =0; $i < 20; $i++)
+        for ($i =0; $i < 300; $i++)
         {
             $Product = new Products();
             $Product
@@ -25,7 +25,10 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
                 ->setDescription($faker->sentences(3,true))
                 ->setPrixHT($faker->numberBetween(100,300))
                 ->setPrixTTC($faker->numberBetween(400,500))
-                ->setCategory($CategoryRetrive[random_int(0,16)]);
+                ->setCategory($CategoryRetrive[random_int(0,9)])
+                ->setStock(random_int(20,400))
+                ->setImageSize(4)
+                ->setImageName(" ");
             $manager->persist($Product);
         }
 

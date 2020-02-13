@@ -7,34 +7,51 @@
 {% block body %}
 
     <div class="container-row">
-        <div class="box-body container-6">
-            <img src="{{ asset('build/images/test.jpg') }}" alt="" style="width:100%">
+        <div class="box-body container-8">
+            {% if product.imageName and product.imageFile  %}
+                <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+            {% else %}
+                <img src="{{ asset('build/images/empty.jpg') | imagine_filter('medium')  }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+            {% endif %}
         </div>
-        <div class="box-body container-6">
+        <div class="box-body container-4">
             <h1>{{ product.nom }}</h1>
             <h2>{{ product.description }}</h2>
             <table class="table-template">
                 <tr>
-                    <td>Surface habitable</td>
-                    <td>sdfsdf m2</td>
+                    <td>Prix HT</td>
+                    <td>{{ product.prixHT }} €</td>
                 </tr>
                 <tr>
-                    <td>Pièces</td>
-                    <td>sdfsdfdsfdsfsdf</td>
-                </tr>
-                <tr>
-                    <td>Chambres</td>
-                    <td>sdfdsfdsfdssdfsdf</td>
-                </tr>
-                <tr>
-                    <td>Etage</td>
-                    <td>sdfsdfsdfsdfsdf</td>
-                </tr>
-                <tr>
-                    <td>Chauffage</td>
-                    <td>sfsdfsdfsd</td>
+                    <td>Prix TTC</td>
+                    <td>{{ product.prixTTC }} €</td>
                 </tr>
             </table>
+            <div id="commande" class="button">Commander</div>
+        </div>
+    </div>
+
+    <div id="commandeModal" class="modal-container dp-none">
+        <div class="modal">
+            <div class="box">
+                <div class="box-body">
+                    <div class="box-title">
+                        <div class="box-title-text">
+                            Commande
+                        </div>
+                        <div id="closeModal" class="box-title-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        Vous êtes sure le point de commander un article êtes-vous sure ?
+                    </div>
+                </div>
+                <div class="box-body">
+                    <a href="" class="button">Confirmer</a>
+                    <a href="" class="button">Annuler</a>
+                </div>
+            </div>
         </div>
     </div>
 

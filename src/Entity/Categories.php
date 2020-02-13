@@ -36,14 +36,14 @@ class Categories
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
     private $imageName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer
      */
@@ -134,9 +134,9 @@ class Categories
 
     /**
      * @param \DateTime|null $updatedAt
-     * @return Property
+     * @return Categories
      */
-    public function setUpdatedAt(?\DateTime $updatedAt): Property
+    public function setUpdatedAt(?\DateTime $updatedAt): Categories
     {
         $this->updatedAt = $updatedAt;
         return $this;

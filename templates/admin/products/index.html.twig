@@ -1,0 +1,61 @@
+{% extends 'base/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="container-row">
+        <div class="box-container">
+            <div class="box">
+                <div class="box-body">
+                    <div class="box-title">
+                        Gérer les produits {% if catName is defined %} de {{ catName }}{% endif %}
+                    </div>
+                    {% for message in app.flashes('success') %}
+                        <div class="alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert-error">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-menu">
+                        <a href="{{ path('admin.product.new') }}" class="button">Créer un nouveau produit</a>
+                    </div>
+                    <table class="table-template">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Stock</th>
+                            <th>Catégorie</th>
+                            <th class="text-align-right">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.nom }}</td>
+                                <td>{{ product.description }}</td>
+                                <td>{{ product.stock }}</td>
+                                <td>{{ product.category.nom }}</td>
+                                <td class="text-align-right nWrap">
+                                    <a href="{{ path('admin.product.edit', {id: product.id}) }}" class="button" >Editer</a>
+                                    <form method="POST" action="{{ path('admin.product.delete', {id : product.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                                        <button class="button">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="text-right">
+                        {##}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

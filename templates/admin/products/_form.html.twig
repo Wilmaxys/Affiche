@@ -1,0 +1,12 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_row(form.nom) }}
+{{ form_row(form.description) }}
+{{ form_row(form.stock) }}
+{{ form_row(form.prixTTC) }}
+{{ form_row(form.prixHT) }}
+{{ form_row(form.category) }}
+<div class="text-align-right">
+    {{ form_row(form.save) }}
+    {{ form_row(form.cancel) }}
+</div>
+{{ form_end(form) }}

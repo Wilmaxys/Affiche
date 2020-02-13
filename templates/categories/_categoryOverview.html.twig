@@ -1,15 +1,15 @@
-<a href="{{ path('category.show', { 'id': category.id }) }}" class="box-container container-3">
+<a href="{{ path('category.show', { 'id': category.id }) }}" class="box-container container-3 container-tab-4 container-pho-6">
     <div class="box">
         {#<div class="box-header icon-img">
             <img src="assets/img/set.icon.png" alt="">
         </div>#}
-
-        {% if category.imageName and category.imageFile  %}
-            <img src="{{ vich_uploader_asset(category, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
-        {% else %}
-            <img src="{{ asset('images/empty.jpg') | imagine_filter('thumb')  }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
-        {% endif %}
-
+        <div class="box-header">
+            {% if category.imageName and category.imageFile  %}
+                <img src="{{ vich_uploader_asset(category, 'imageFile') | imagine_filter('thumb') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+            {% else %}
+                <img src="{{ asset('build/images/empty.jpg') | imagine_filter('thumb')  }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+            {% endif %}
+        </div>
         <div class="box-body">
             <div class="box-title-medium">
                 {{ category.nom }}

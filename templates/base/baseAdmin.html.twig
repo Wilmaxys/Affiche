@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-    <script defer src="{{ asset('build/app.js') }}"></script>
-    <script src="{{ asset('build/preRender.js') }}"></script>
     {% block stylesheets %}
     {% endblock %}
+    <script src="{{ asset('build/preRender.js') }}"></script>
+    <script defer type="text/javascript" src="{{ asset('build/app.js') }}"></script>
     {% block javascripts %}
     {% endblock %}
 </head>
@@ -22,6 +21,7 @@
     </div>
 </div>
 <div class="main">
+    {% block menu %}
     <div class="sidebar dp-none">
         <div class="sidebar-row sidebar-row-nb2">
             <div class="sidebar-item" id="sidebar-grow-button">
@@ -33,52 +33,32 @@
             </div>
         </div>
         <div class="sidebar-row">
-            <a href="index.html" class="sidebar-item" id="menu-user">
-                <span class="sidebar-item-icon"><i class="fas fa-users"></i></span>
-                <span class="sidebar-item-text">Utilisateurs</span>
+            <a href="{{ path('logout') }}" class="sidebar-item" id="menu-user">
+                <span class="sidebar-item-icon"><i class="fas fa-sign-out-alt"></i></span>
+                <span class="sidebar-item-text">Se déconnecter</span>
             </a>
         </div>
         <div class="sidebar-row">
-            <a href="index.html" id="menu-geo" class="sidebar-item">
-                <span class="sidebar-item-icon"><i class="fas fa-globe"></i></span>
-                <span class="sidebar-item-text">Localisation</span>
+            <a href="{{ path('admin.categories.show') }}" class="sidebar-item" id="menu-user">
+                <span class="sidebar-item-icon"><i class="far fa-list-alt"></i></span>
+                <span class="sidebar-item-text">Catégories</span>
             </a>
         </div>
-        {% block menu %}{% endblock %}
+        <div class="sidebar-row">
+            <a href="{{ path('admin.products.show') }}" class="sidebar-item" id="menu-user">
+                <span class="sidebar-item-icon"><i class="fas fa-shopping-basket"></i></span>
+                <span class="sidebar-item-text">Produits</span>
+            </a>
+        </div>
+        {% block menuContent %}{% endblock %}
     </div>
+    {% endblock %}
     <div class="content">
         {% block body %}{% endblock %}
     </div>
 </div>
 <div class="footer">
     <p>Cette application à été développé par le Pôle WEB - Univers NOZ © 2020. Pour nous contacter: <a  href="index.html">Envoyer un email</a>.</p>
-</div>
-<div class="modal-container dp-none">
-    <div class="modal">
-        <div class="box">
-            <div class="box-body">
-                <div class="box-title">
-                    <div class="box-title-text">
-                        Test rapide
-                    </div>
-                    <div id="closeModal" class="box-title-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="box-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste non blanditiis accusantium qui temporibus molestias nam est pariatur, magni maxime voluptatum voluptate ducimus, optio vel natus! Blanditiis, magnam quibusdam!
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="box-title">
-                    testRapide
-                </div>
-                <div class="box-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste non blanditiis accusantium qui temporibus molestias nam est pariatur, magni maxime voluptatum voluptate ducimus, optio vel natus! Blanditiis, magnam quibusdam!
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html>

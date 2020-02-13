@@ -1,25 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends 'base/baseAdmin.html.twig' %}
 
 {% block title 'Se connecter' %}
 
-{% block body %}
-    <div class="container mt-4">
-        {% if error%}
-            <div class="alert alert-danger">
-                {{ error.messageKey | trans(error.messageData, 'security')  }}
-            </div>
-        {% endif %}
-        <form action="{{ path('login') }}" method="post">
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="text" id="password" name="_password" class="form-control">
-            </div>
+{% block menu %}
+{% endblock %}
 
-            <button type="submit" class="btn btn-primary">Se connecter</button>
-        </form>
+{% block body %}
+    <div class="container-row">
+        <div class="box container-4 mAuto">
+            <div class="box-body">
+                {% if error %}
+                    <div class="alert-error">
+                        {{ error.messageKey | trans(error.messagedata, 'security') }}
+                    </div>
+                {% endif %}
+                <div class="box-title-medium">Se connecter</div>
+                <form action="{{ path('login') }}" method="post">
+                    <div class="input-container">
+                        <label for="username" class="input-textBox-label" >Utilisateur</label>
+                        <input value="{{ last_username }}" name="_username" id="username" class="input-textBox" type="text">
+                    </div>
+                    <div class="input-container">
+                        <label for="password" class="input-textBox-label" >Mot de passe</label>
+                        <input value="{{ last_username }}" name="_password" id="password" class="input-textBox" type="password">
+                    </div>
+                    <div class="input-container">
+                        <button type="submit" class="input-button">connexion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}

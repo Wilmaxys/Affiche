@@ -20,7 +20,10 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
-    private function findPoney() : Query
+    /**
+     * @return Query
+     */
+    public function findAllOrdered() : Query
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.nom','ASC')->getQuery();

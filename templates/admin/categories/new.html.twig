@@ -1,0 +1,12 @@
+{% extends 'base/baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="box-container">
+        <div class="box">
+            <div class="box-body">
+                <div class="box-title">Ajouter une catégorie</div>
+                {{ include('admin/categories/_form.html.twig', {form: form, button:'Enregistrer'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

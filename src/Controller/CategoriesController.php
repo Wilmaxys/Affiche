@@ -14,27 +14,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoriesController extends AbstractController
 {
-    private $repository;
+    private $repositoryCat;
     private $repositoryProducts;
 
     /**
      * CategoriesController constructor.
-     * @param CategoriesRepository $repository
+     * @param CategoriesRepository $repositoryCat
      * @param ProductsRepository $repositoryProducts
      */
-    public function __construct(CategoriesRepository $repository, ProductsRepository $repositoryProducts)
+    public function __construct(CategoriesRepository $repositoryCat, ProductsRepository $repositoryProducts)
     {
-        $this->repository = $repository;
+        $this->repositoryCat = $repositoryCat;
         $this->repositoryProducts = $repositoryProducts;
     }
 
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        die(var_dump($this->repository));
         $categories = $paginator->paginate(
-            $this->repository->findPoney(),
+            $this->repositoryCat->findAllOrdered(),
             $request->query->getInt('page', 1),
-            9
+            8
         );
 
         return $this->render('categories/index.html.twig',
@@ -42,12 +41,19 @@ class CategoriesController extends AbstractController
         );
     }
 
-    public function openCategory(Categories $category) : Response
+    public function openCategory(Categories $category, PaginatorInterface $paginator, Request $request) : Response
     {
         $products = $this->repositoryProducts->findByCategory($category);
 
+        $products = $paginator->paginate(
+            $this->repositoryProducts->findAllOrdered($category),
+            $request->query->getInt('page', 1),
+            8
+        );
+
         return $this->render('categories/openCategory.html.twig',
-            ['products' => $products]
+            ['products' => $products,
+             'title' => $category->getNom()]
         );
     }
 }

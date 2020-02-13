@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block body %}
+    <div class="title">{{ title }}</div>
     <div class="container-row">
         {% for product in products %}
             {% include 'products/_productOverwiew.html.twig' %}
         {% endfor %}
     </div>
+    {{ knp_pagination_render(products) }}
 {% endblock %}
 
