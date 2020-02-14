@@ -7,7 +7,7 @@
             {% if product.imageName and product.imageFile  %}
                 <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
             {% else %}
-                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="height: 150px; width: 100%;">
             {% endif %}
         </div>
         <div class="box-body">

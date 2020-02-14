@@ -5,9 +5,9 @@
         </div>#}
         <div class="box-header">
             {% if category.imageName and category.imageFile  %}
-                <img src="{{ vich_uploader_asset(category, 'imageFile') | imagine_filter('thumb') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+                <img src="{{ vich_uploader_asset(category, 'imageFile') | imagine_filter('thumb') }}" alt="" class="card-img-top" style="height: 150px !important;">
             {% else %}
-                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="height: 150px !important; width: 100%;">
             {% endif %}
         </div>
         <div class="box-body">
