@@ -7,11 +7,12 @@ category.show:
 product.show:
   path: /product/{id}
   controller: App\Controller\ProductsController::show
-
+order.createOrder:
+  path: /order
+  controller: App\Controller\OrderController::createOrder
 login:
   path: /login
   controller: App\Controller\SecurityController::login
-
 logout:
   path: /logout
 
@@ -35,6 +36,13 @@ admin.category.delete:
   path: /admin/category/{id}
   controller: App\Controller\Admin\CategoriesController::delete
   methods:    DELETE
+
+admin.orders.show:
+  path: /admin/orders
+  controller: App\Controller\Admin\OrderController::index
+admin.customers.show:
+  path: /admin/customers
+  controller: App\Controller\Admin\CustomerController::index
 
 admin.products.show:
   path: /admin/products

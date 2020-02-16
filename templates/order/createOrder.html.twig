@@ -1,0 +1,37 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <div class="box-container">
+        <div class="box">
+            <div class="box-body">
+                <div class="box-title">Résumé de la commande</div>
+                <div class="container-row">
+                    <div class="container-4 crop-img crop-img150 box-body">
+                        {% if order.product.imageName %}
+                            <img src="{{ vich_uploader_asset(order.product, 'imageFile') }}" alt="" class="card-img-top">
+                        {% else %}
+                            <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
+                        {% endif %}
+                    </div>
+                    <div class="container-8 box-body">
+                        <div class="box-title">
+                            {{ order.product.nom }}
+                        </div>
+                        <div class="box-content">
+                            {{ order.product.description | nl2br }}
+                        </div>
+                        <div class="box-footer">Prix: {{ order.product.prixHT }} € - Quantité: {{ order.qte }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-container">
+        <div class="box">
+            <div class="box-body">
+                <div class="box-title">Informations personnelles</div>
+                {{ include('customer/_form.html.twig', {form: form}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

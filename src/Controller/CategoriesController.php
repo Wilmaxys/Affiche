@@ -43,8 +43,6 @@ class CategoriesController extends AbstractController
 
     public function openCategory(Categories $category, PaginatorInterface $paginator, Request $request) : Response
     {
-        $products = $this->repositoryProducts->findByCategory($category);
-
         $products = $paginator->paginate(
             $this->repositoryProducts->findAllOrdered($category),
             $request->query->getInt('page', 1),

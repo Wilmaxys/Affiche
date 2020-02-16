@@ -45,11 +45,13 @@ $( document ).ready(function () {
 
     $('.input-textBox').focusin(function () {
         if (!$(this).val()) {
-            $(this).parent('.input-container').toggleClass('active');
+            $(this).parent('.input-container').children('.input-textBox').toggleClass('active');
+            $(this).parent('.input-container').children('.input-textBox-label').toggleClass('active');
         }
     }).focusout(function () {
         if (!$(this).val()) {
-            $(this).parent('.input-container').toggleClass('active');
+            $(this).parent('.input-container').children('.input-textBox').toggleClass('active');
+            $(this).parent('.input-container').children('.input-textBox-label').toggleClass('active');
         }
     })
 

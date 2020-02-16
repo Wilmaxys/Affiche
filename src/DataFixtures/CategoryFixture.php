@@ -14,13 +14,11 @@ class CategoryFixture extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i =0; $i < 10; $i++)
+        for ($i =0; $i < 3; $i++)
         {
             $Category = new Categories();
             $Category->setNom($faker->words(3, true));
             $Category->setDescription($faker->words(3, true));
-            $Category->setImageName(" ");
-            $Category->setImageSize(4);
             $manager->persist($Category);
         }
 

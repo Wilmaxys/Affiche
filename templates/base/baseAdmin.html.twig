@@ -46,8 +46,20 @@
         </div>
         <div class="sidebar-row">
             <a href="{{ path('admin.products.show') }}" class="sidebar-item" id="menu-user">
-                <span class="sidebar-item-icon"><i class="fas fa-shopping-basket"></i></span>
+                <span class="sidebar-item-icon"><i class="fas fa-shopping-cart"></i></span>
                 <span class="sidebar-item-text">Produits</span>
+            </a>
+        </div>
+        <div class="sidebar-row">
+            <a href="{{ path('admin.orders.show') }}" class="sidebar-item" id="menu-user">
+                <span class="sidebar-item-icon"><i class="fas fa-shipping-fast"></i></span>
+                <span class="sidebar-item-text">Commandes</span>
+            </a>
+        </div>
+        <div class="sidebar-row">
+            <a href="{{ path('admin.customers.show') }}" class="sidebar-item" id="menu-user">
+                <span class="sidebar-item-icon"><i class="fas fa-users"></i></span>
+                <span class="sidebar-item-text">Clients</span>
             </a>
         </div>
         {% block menuContent %}{% endblock %}

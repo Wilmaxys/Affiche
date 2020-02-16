@@ -45,7 +45,8 @@ ready('.input-textBox', function(element) {
     var parent = element.parentNode;
 
     if (input.value) {
-        parent.classList.add("active");
+        parent.childNodes[0].classList.add("active");
+        parent.childNodes[1].classList.add("active");
     }
 });
 

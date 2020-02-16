@@ -8,11 +8,13 @@
 
     <div class="container-row">
         <div class="box-body container-8">
-            {% if product.imageName and product.imageFile  %}
-                <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="height: 150px !important;">
-            {% else %}
-                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="height: 500px; width: 100%;">
-            {% endif %}
+            <div class="crop-img crop-img500">
+                {% if product.imageName %}
+                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top">
+                {% else %}
+                    <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
+                {% endif %}
+            </div>
         </div>
         <div class="box-body container-4">
             <h1>{{ product.nom }}</h1>
@@ -44,12 +46,28 @@
                         </div>
                     </div>
                     <div class="box-content">
-                        Vous êtes sure le point de commander un article êtes-vous sure ?
+                        <div class="container-row">
+                            <div class="container-4 box-body crop-img crop-img150">
+                                {% if product.imageName %}
+                                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top">
+                                {% else %}
+                                    <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
+                                {% endif %}
+                            </div>
+                            <div class="container-8 box-body">
+                                <div class="box-title">
+                                    {{ product.nom }}
+                                </div>
+                                <div class="box-content">
+                                    {{ product.description | nl2br }}
+                                </div>
+                                <div class="box-footer">{{ product.prixHT }} €</div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            {{ include('order/_form.html.twig', {form: form}) }}
+                        </div>
                     </div>
-                </div>
-                <div class="box-body">
-                    <a href="" class="button">Confirmer</a>
-                    <a href="" class="button">Annuler</a>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Entity\Products;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,10 @@ class ProductsType extends AbstractType
             ->add('stock')
             ->add('prixTTC',NumberType::class, ['label' => 'Prix TTC'])
             ->add('prixHT',NumberType::class, ['label' => 'Prix HT'])
+            ->add('imageFile', FileType::class, [
+                'label' => ' ',
+                'required' => false
+            ])
             ->add('category', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Categories::class,

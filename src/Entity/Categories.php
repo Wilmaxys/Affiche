@@ -134,9 +134,9 @@ class Categories
 
     /**
      * @param \DateTime|null $updatedAt
-     * @return Categories
+     * @return Products
      */
-    public function setUpdatedAt(?\DateTime $updatedAt): Categories
+    public function setUpdatedAt(?\DateTime $updatedAt): Products
     {
         $this->updatedAt = $updatedAt;
         return $this;
@@ -149,4 +149,5 @@ class Categories
     {
         return $this->updatedAt;
     }
+
 }

@@ -3,11 +3,11 @@
         {#<div class="box-header icon-img">
             <img src="assets/img/set.icon.png" alt="">
         </div>#}
-        <div class="box-header">
-            {% if product.imageName and product.imageFile  %}
-                <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="" class="card-img-top" style="width: 100%; height: auto;">
+        <div class="box-header crop-img crop-img150">
+            {% if product.imageName %}
+                <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top">
             {% else %}
-                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top" style="height: 150px; width: 100%;">
+                <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
             {% endif %}
         </div>
         <div class="box-body">
