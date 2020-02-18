@@ -24,6 +24,8 @@ public/media
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
+/assets/images/products/
+/assets/images/properties/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

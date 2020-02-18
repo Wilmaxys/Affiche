@@ -39,9 +39,7 @@ class OrderController extends AbstractController
 
             $form = $this->createForm(CustomerType::class, $customer);
             $form->handleRequest($request);
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 if ($form->get('save')->isClicked()) {
                     $product = $productsRepository->find($order->getProduct()->getId());
 
@@ -52,7 +50,7 @@ class OrderController extends AbstractController
                     $this->em->persist($order);
                     $this->em->Flush();
 
-                    $this->addFlash('success', 'Order effectuer avec succès.');
+                    $this->addFlash('success', 'Commande effectuée avec succès.');
                 }
                 else {
                     $session->set('order', null);

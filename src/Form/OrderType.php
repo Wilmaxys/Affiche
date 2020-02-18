@@ -18,7 +18,8 @@ class OrderType extends AbstractType
             ->add('qte', IntegerType::class, [
                 'label' => 'Quantité',
                 'row_attr' => ['class' => 'active'],
-                'label_attr' => ['class' => 'active']
+                'label_attr' => ['class' => 'active'],
+                'data' => 1
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Confirmer',

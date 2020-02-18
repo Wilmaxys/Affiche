@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -15,28 +17,37 @@ class Order
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="qte", type="integer")
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Merci d'entrer un nombre."
+     * )
      */
-    private $qte;
+    private $qte = 1;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Products")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $Product;
+    private $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $Customer;
+    private $customer;
 
     public function __construct()
-    {
-    }
+    {}
 
     public function getId(): ?int
     {
@@ -57,24 +68,24 @@ class Order
 
     public function getProduct(): ?Products
     {
-        return $this->Product;
+        return $this->product;
     }
 
-    public function setProduct(?Products $Product): self
+    public function setProduct(?Products $product): self
     {
-        $this->Product = $Product;
+        $this->product = $product;
 
         return $this;
     }
 
     public function getCustomer(): ?Customer
     {
-        return $this->Customer;
+        return $this->customer;
     }
 
-    public function setCustomer(?Customer $Customer): self
+    public function setCustomer(?Customer $customer): self
     {
-        $this->Customer = $Customer;
+        $this->customer = $customer;
 
         return $this;
     }

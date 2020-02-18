@@ -5,8 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
+ * @ORM\Table(name="customer")
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
  */
 class Customer
@@ -14,33 +17,37 @@ class Customer
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\Regex("/^[a-zA-Zàéèâêîôûïë'-]+$/")
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255)
+     * @Assert\Regex("/^[a-zA-Zàéèâêîôûïë'-]+$/")
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="mail", type="string", length=255)
+     * @Assert\Email(
+     *     message = "Entrez une adresse mail valide."
+     * )
      */
     private $mail;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
 
     public function __construct()
-    {
-    }
+    {}
 
     public function getId(): ?int
     {
@@ -94,6 +101,4 @@ class Customer
 
         return $this;
     }
-
-
 }
