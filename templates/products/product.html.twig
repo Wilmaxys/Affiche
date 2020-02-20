@@ -1,7 +1,7 @@
 {% extends 'base/base.html.twig' %}
 
 {% block portal %}
-    <a  href="{{ path('category.show', { 'id': product.category.id }) }}">Retour</a>
+    <a href="{{ path('category.show', { 'id': product.category.id }) }}">Retour</a>
 {% endblock %}
 
 {% block body %}
@@ -29,49 +29,50 @@
                     <td>{{ product.prixTTC }} €</td>
                 </tr>
             </table>
-            <div id="commande" class="button">Commander</div>
+            <!-- <div id="commande" class="button">Commander</div> -->
+            <a id="commande" class="button" href="{{ path('order.createOrder') }}">Commander</a>
         </div>
     </div>
 
-    <div id="commandeModal" class="modal-container dp-none">
-        <div class="modal">
-            <div class="box">
-                <div class="box-body">
-                    <div class="box-title">
-                        <div class="box-title-text">
-                            Commande
-                        </div>
-                        <div id="closeModal" class="box-title-icon">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <div class="container-row">
-                            <div class="container-4 box-body crop-img crop-img150">
-                                {% if product.imageName %}
-                                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top">
-                                {% else %}
-                                    <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
-                                {% endif %}
+    {#<div id="commandeModal" class="modal-container dp-none">
+            <div class="modal">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="box-title">
+                            <div class="box-title-text">
+                                Commande
                             </div>
-                            <div class="container-8 box-body">
-                                <div class="box-title">
-                                    {{ product.nom }}
-                                </div>
-                                <div class="box-content">
-                                    {{ product.description | nl2br }}
-                                </div>
-                                <div class="box-footer">{{ product.prixHT }} €</div>
+                            <div id="closeModal" class="box-title-icon">
+                                <i class="fas fa-times"></i>
                             </div>
                         </div>
-                        <div class="box-body">
-                            {{ include('order/_form.html.twig', {form: form}) }}
+                        <div class="box-content">
+                            <div class="container-row">
+                                <div class="container-4 box-body crop-img crop-img150">
+                                    {% if product.imageName %}
+                                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="" class="card-img-top">
+                                    {% else %}
+                                        <img src="{{ asset('build/images/empty.jpg') }}" alt="" class="card-img-top">
+                                    {% endif %}
+                                </div>
+                                <div class="container-8 box-body">
+                                    <div class="box-title">
+                                        {{ product.nom }}
+                                    </div>
+                                    <div class="box-content">
+                                        {{ product.description | nl2br }}
+                                    </div>
+                                    <div class="box-footer">{{ product.prixHT }} €</div>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                {{ include('order/_form.html.twig', {form: form}) }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>#}
 
 {% endblock %}
 

@@ -46,6 +46,12 @@ class Customer
      */
     private $adresse;
 
+    /**
+     * @ORM\Column(name="phone", type="string", length=45, nullable=true)
+     * @Assert\Regex("/^[0-9+\. \/-]+$/")
+     */
+    private $phone;
+
     public function __construct()
     {}
 
@@ -98,6 +104,18 @@ class Customer
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

@@ -1,0 +1,10 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block email_body %}
+    Bonjour {{ customer.prenom }} {{ customer.nom }},
+    Votre commande a bien été réceptionnée par nos services.
+
+    Cordialement,
+
+    Votre magasin NOZ
+{% endblock %}

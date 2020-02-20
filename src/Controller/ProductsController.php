@@ -24,22 +24,23 @@ class ProductsController extends AbstractController
         $this->repository = $repository;
     }
 
-    public function show(Products $product, Request $request) : Response {
+    public function show(Products $product, Request $request) : Response
+    {
         $session = new Session();
         $createdOrder = new Order();
         $createdOrder->setProduct($product);
 
-        $form = $this->createForm(OrderType::class, $createdOrder);
-        $form->handleRequest($request);
+        //$form = $this->createForm(OrderType::class, $createdOrder);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && $form->get('save')->isClicked()) {
+        //if ($form->isSubmitted() && $form->isValid() && $form->get('save')->isClicked()) {
             $session->set('order', $createdOrder);
-            return $this->redirectToRoute('order.createOrder');
-        }
+            //return $this->redirectToRoute('order.createOrder');
+        //}
 
-        return $this->render('products/product.html.twig',[
-            'form' => $form->createView(),
-            'product' => $product]
-        );
+        return $this->render('products/product.html.twig', [
+            //'form' => $form->createView(),
+            'product' => $product
+        ]);
     }
 }

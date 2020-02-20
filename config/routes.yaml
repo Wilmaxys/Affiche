@@ -10,6 +10,9 @@ product.show:
 order.createOrder:
   path: /order
   controller: App\Controller\OrderController::createOrder
+order.success:
+  path: /order-success
+  controller: App\Controller\OrderController::success
 login:
   path: /login
   controller: App\Controller\SecurityController::login

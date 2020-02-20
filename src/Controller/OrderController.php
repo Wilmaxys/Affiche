@@ -26,7 +26,7 @@ class OrderController extends AbstractController
         $this->em = $em;
     }
 
-    public function createOrder(Request $request, ProductsRepository $productsRepository): Response
+    public function createOrder(Request $request, ProductsRepository $productsRepository, \Swift_Mailer $mailer): Response
     {
         $response = $this->redirectToRoute('categories.show');
 
@@ -40,7 +40,9 @@ class OrderController extends AbstractController
             $form = $this->createForm(CustomerType::class, $customer);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                if ($form->get('save')->isClicked()) {
+                //var_dump('OK');
+
+                //if ($form->get('save')->isClicked()) {
                     $product = $productsRepository->find($order->getProduct()->getId());
 
                     $order->setProduct($product);
@@ -50,14 +52,34 @@ class OrderController extends AbstractController
                     $this->em->persist($order);
                     $this->em->Flush();
 
-                    $this->addFlash('success', 'Commande effectuée avec succès.');
-                }
-                else {
+                    //$this->addFlash('success', 'Commande effectuée avec succès.');
+                    
+                    $message = (new \Swift_Message('Hello Email'))
+                        ->setFrom('no-reply_affiche@noz.fr')
+                        ->setTo($customer->getMail())
+                        ->setBcc('vredois@noz.fr')
+                        ->setBody(
+                            $this->renderView(
+                                'emails/confirm.html.twig',
+                                ['customer' => $customer]
+                            ),
+                            'text/html'
+                        );
+                    $mailerResult = $mailer->send($message);
+                    //die(var_dump($mailerResult, $mailer));
+                //}
+                /*else {
                     $session->set('order', null);
-                }
+                }*/
 
-                return $this->redirectToRoute('categories.show');
-            }
+                return $this->redirectToRoute('order.success');
+            }/* else {
+                var_dump($form->isSubmitted());
+                if ($form->isSubmitted()) {
+                    var_dump($form);
+                    die();
+                }
+            }*/
 
             $response = $this->render('order/createOrder.html.twig',[
                 'form' => $form->createView(),
@@ -66,6 +88,22 @@ class OrderController extends AbstractController
         }
 
         return $response;
+    }
 
+    public function success()
+    {
+        $session = new Session();
+        $order = $session->get('order');
+
+        if ($order != null) {
+            $session->remove('order');
+            //die(var_dump($session));
+
+            return $this->render('order/success.html.twig', [
+                'order' => $order
+            ]);
+        }
+
+        return $this->redirectToRoute('categories.show');
     }
 }

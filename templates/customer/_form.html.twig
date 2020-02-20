@@ -1,10 +1,19 @@
+<style>
+    .inline-block
+    {
+        width: 50%;
+    }
+</style>
 {{ form_start(form) }}
-{{ form_row(form.nom) }}
-{{ form_row(form.prenom) }}
-{{ form_row(form.mail) }}
-{{ form_row(form.adresse) }}
-<div class="text-align-right">
-    {{ form_row(form.save) }}
-    {{ form_row(form.cancel) }}
-</div>
+    {{ form_row(form.prenom, {'row_attr': {'class': 'inline-block'}}) }}
+    {{ form_row(form.nom, {'row_attr': {'class': 'inline-block'}}) }}
+    {{ form_row(form.mail) }}
+    {{ form_row(form.adresse) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.useConditions) }}
+    {{ form_row(form.allowDataSave) }}
+    <div class="text-align-right">
+        {{ form_row(form.save) }}
+        {{ form_row(form.cancel) }}
+    </div>
 {{ form_end(form) }}

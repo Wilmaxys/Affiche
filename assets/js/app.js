@@ -14,8 +14,12 @@ require('select2/dist/css/select2.css');
 require('../css/app.css');
 require('../css/nozAffiche.css');
 
-$( document ).ready(function () {
+function customerFormSubmitToggle() {
+    var bothUseConditionsChecked = $("#customer_useConditions").prop('checked') && $("#customer_allowDataSave").prop('checked');
+    $("#customer_save").attr('disabled', bothUseConditionsChecked ? false : 'disabled');
+}
 
+$( document ).ready(function () {
     $('#closeModal').click(function () {
         $(this).parents('.modal-container').toggleClass("dp-none");
     });
@@ -179,6 +183,11 @@ $( document ).ready(function () {
 
     $('.sidebar').toggleClass('dp-none');
     $('.tabs-container').toggleClass('dp-none');
+
+    customerFormSubmitToggle();
+    $('input.buy-conditions').on('click', function() {
+        customerFormSubmitToggle();
+    });
 })
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
